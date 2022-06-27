@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import { Link } from 'react-router-dom';
+
 
 function Footer() {
   return (
@@ -12,22 +12,24 @@ function Footer() {
           <small class='website-rights'>Patrik Parkkonen © 2022</small>
           <div class='social-icons'>
          
-            <Link
+            <a
               class='social-icon-link github'
-              to='https://github.com/PatrikParkkonen'
+              href='https://github.com/PatrikParkkonen'
               target='_blank'
+              rel='noreferrer'
               aria-label='Github'
             >
               <i class='fab fa-git-square' />
-            </Link>
-            <Link
+            </a>
+            <a
               class='social-icon-link linkedin'
-              to='https://www.linkedin.com/in/patrik-parkkonen-443033163/'
+              href='https://www.linkedin.com/in/patrik-parkkonen-443033163/'
               target='_blank'
+              rel='noreferrer'
               aria-label='LinkedIn'
             >
               <i class='fab fa-linkedin' />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
