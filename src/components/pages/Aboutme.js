@@ -1,12 +1,20 @@
 import React from 'react';
-import '../../App.css';
-import HeroSection from '../HeroSection';
+import '../../components/AboutSection.css';
+import AboutSection from '../AboutSection';
+import Footer from '../Footer';
+import '../Footer.css';
 
 
-export default function Aboutme() {
-    return <h1 className='about-me'>About me</h1>
-    
+function Aboutme () {
+    return (
+        <>
+         <AboutSection />
+         <Footer />
+        </>
+    );
 }
+
+export default Aboutme;
 
 
 
