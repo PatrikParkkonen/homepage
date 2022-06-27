@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { Button } from './Button';
 
+//Creating the Navbar at the top of the site
 function Navbar() {
     const [click, setClick] = useState(false);
 
@@ -24,6 +25,7 @@ function Navbar() {
         showButton()
     }, []);
 
+    //Check if window's resized at any point so the page can scale
     window.addEventListener('resize', showButton);
 
     return (
