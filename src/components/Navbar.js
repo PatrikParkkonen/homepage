@@ -35,6 +35,11 @@ function Navbar() {
                             Resume
                         </Link>
                     </li>
+                    <li className='nav-item'>
+                        <Link to='/games' className='nav-links' onClick={closeMobileMenu}>
+                            Games
+                        </Link>
+                    </li>
                    
                 </ul>
                 

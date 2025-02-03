@@ -9,7 +9,7 @@ function Footer() {
       <section class='social-media'>
         <div class='social-media-wrap'>
           
-          <small class='website-rights'>Patrik Parkkonen © 2022</small>
+          <small class='website-rights'>Patrik Parkkonen © 2022-2025</small>
           <div class='social-icons'>
          
             <a
