@@ -7,9 +7,7 @@ import Aboutme from './components/pages/Aboutme';
 import Resume from './components/pages/Resume';
 import Games from './components/pages/Games';
 import Wordle from './components/pages/Wordle';
-import Board from './components/Board';
-import Keyboard from './components/Keyboard';
-import Footer from './components/Footer';
+
 
 function App() {
   return (
