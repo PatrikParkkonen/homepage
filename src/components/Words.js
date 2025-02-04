@@ -11,11 +11,12 @@ export const boardDefault = [
 export const generateWordSet = async () => {
     let wordSet;
     let todaysWord;
-    await fetch("https://homepage-virid-seven.vercel.app/wordle-bank.txt")
+    await fetch("/wordle-bank.txt")
     .then((response) => response.text())
     .then((result) => {
         const wordArr = result.split("\r\n");
         todaysWord = wordArr[Math.floor(Math.random() * wordArr.length)]
+            console.log("Today's word:", todaysWord);
         wordSet = new Set(wordArr);
     });
 
