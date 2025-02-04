@@ -14,7 +14,7 @@ export const generateWordSet = async () => {
     await fetch("/wordle-bank.txt")
     .then((response) => response.text())
     .then((result) => {
-        const wordArr = result.split("\r\n");
+        const wordArr = result.split(/\r?\n/);
             console.log("Word list:", wordArr);
         todaysWord = wordArr[Math.floor(Math.random() * wordArr.length)]
             console.log("Today's word:", todaysWord);
