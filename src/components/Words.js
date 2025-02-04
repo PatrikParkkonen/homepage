@@ -11,7 +11,7 @@ export const boardDefault = [
 export const generateWordSet = async () => {
     let wordSet;
     let todaysWord;
-    await fetch("/wordle-bank.txt")
+    await fetch("https://homepage-virid-seven.vercel.app/wordle-bank.txt")
     .then((response) => response.text())
     .then((result) => {
         const wordArr = result.split("\r\n");
