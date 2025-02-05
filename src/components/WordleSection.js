@@ -26,6 +26,7 @@ function WordleSection() {
     }, []);
 
     const onSelectLetter = (keyVal) => {
+        if (currAttempt.letterPos >= 5) return;
         const newBoard = [...board];
         newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
         setBoard(newBoard);
