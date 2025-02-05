@@ -2,6 +2,7 @@ import React, { useContext, useCallback, useEffect } from 'react';
 import Key from './Key';
 import { AppContext } from '../components/WordleSection';
 
+// Creating digital keyboard as three separate rows
 function Keyboard() {
     const { onEnter, onDelete, onSelectLetter, disabledLetters } = useContext(AppContext);
     const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -31,6 +32,7 @@ function Keyboard() {
            }); 
         }
     })
+    //Event Listener to collect regular keyboard inputs as well
     useEffect(() => {
         document.addEventListener("keydown", handleKeyboard)
 
@@ -39,6 +41,7 @@ function Keyboard() {
         }
     }, [handleKeyboard]);
 
+    // Logic for each row of the digital keyboard
     return <div className="keyboard" onKeyDown={handleKeyboard}>
         <div className="line1">
             {keys1.map((key) => {

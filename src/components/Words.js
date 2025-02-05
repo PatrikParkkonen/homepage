@@ -1,4 +1,4 @@
-
+// Creating a usable board
 export const boardDefault = [
     ["","","","",""],
     ["","","","",""],
@@ -8,6 +8,7 @@ export const boardDefault = [
     ["","","","",""],
 ];
 
+// Generating wordset from .txt file and splitting them into a usable array
 export const generateWordSet = async () => {
     let wordSet;
     let todaysWord;

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../components/WordleSection';
 
-
+// Logic for ending the game, changes based on winning and losing
 function GameOver() {
     const {gameOver, currAttempt, correctWord} = useContext(AppContext)
     return (

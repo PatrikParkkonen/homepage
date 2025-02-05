@@ -26,7 +26,7 @@ function WordleSection() {
     }, []);
 
     const onSelectLetter = (keyVal) => {
-        if (currAttempt.letterPos >= 5) return;
+        if (currAttempt.letterPos >= 5) return; // Prevent the input of more than 5 letters
         const newBoard = [...board];
         newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
         setBoard(newBoard);
@@ -34,7 +34,7 @@ function WordleSection() {
     };
 
     const onDelete = () => {
-        if (currAttempt.letterPos === 0) return;
+        if (currAttempt.letterPos === 0) return; // Disable Delete if there are no letters
         const newBoard = [...board];
         newBoard[currAttempt.attempt][currAttempt.letterPos -1] = "";     
         setBoard(newBoard);
@@ -42,7 +42,7 @@ function WordleSection() {
     };
 
     const onEnter = () => {
-        if (currAttempt.letterPos !== 5) return;
+        if (currAttempt.letterPos !== 5) return; // Disable Enter if there aren't 5 letters
 
         let currWord = "";
         for (let i = 0; i < 5; i++) {
@@ -56,12 +56,12 @@ function WordleSection() {
         }
 
         if (currWord.toUpperCase() === correctWord) {
-            setGameOver({gameOver: true, guessedWord: true});
+            setGameOver({gameOver: true, guessedWord: true}); // End game as a win
             return;
         }
 
         if (currAttempt.attempt === 5) {
-            setGameOver({gameOver: true, guessedWord: false});
+            setGameOver({gameOver: true, guessedWord: false}); // End game as a loss
         }
 
 
