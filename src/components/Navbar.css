@@ -74,6 +74,38 @@
   .menu-icon {
     display: none;
   }
+
+  .dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-link:hover {
+    background: lightgray;
+}
   
   @media screen and (max-width: 960px) {
     .NavbarItems {

@@ -8,6 +8,8 @@ function GamesSection() {
             <h1>Pick a game!</h1>
             <h2><a href='/wordle'>Legally Distinct Wordle (beta)</a></h2>
 
+            <h2><a href='/connections'>Legally Distinct Connections (beta)</a></h2>
+
                 
             </div>
         

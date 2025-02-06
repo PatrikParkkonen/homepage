@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
+
+  }
+  
+  .game-container {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .word {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ddd;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .word:hover {
+    background-color: #ccc;
+  }
+  
+  .selected {
+    background-color: #808080;
+  }
+  
+  .found {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .check-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .check-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .check-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .win-message {
+    color: #4caf50;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  

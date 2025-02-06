@@ -7,6 +7,7 @@ import Aboutme from './components/pages/Aboutme';
 import Resume from './components/pages/Resume';
 import Games from './components/pages/Games';
 import Wordle from './components/pages/Wordle';
+import Connections from './components/pages/Connections';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/resume' element={<Resume />} />
         <Route path='/games' element={<Games />} />
         <Route path='/wordle' element={<Wordle />} />
+        <Route path='/connections' element={<Connections />} />
         
       </Routes>
       </Router>
