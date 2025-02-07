@@ -10,6 +10,8 @@ function GamesSection() {
 
             <h2><a href='/connections'>Legally Distinct Connections (beta)</a></h2>
 
+            <h2><a href='/platformer'>Pygame Platformer (beta)</a></h2>
+
                 
             </div>
         
