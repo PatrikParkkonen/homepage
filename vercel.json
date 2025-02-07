@@ -1,3 +1,12 @@
 {
     "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
   }
+
+  {
+    "routes": [
+      {
+        "src": "/platformer/(.*)",
+        "dest": "/platformer/$1"
+      }
+    ]
+  }
