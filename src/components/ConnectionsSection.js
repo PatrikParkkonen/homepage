@@ -1,44 +1,41 @@
 import React, { useState, useEffect } from "react";
 import './ConnectionsSection.css';
 
-// Current words and categories, no randomization yet
+// Current words and categories
 const words = [
-    { word: "Apple", category: "Fruits" },
-    { word: "Banana", category: "Fruits" },
-    { word: "Orange", category: "Fruits" },
-    { word: "Grapes", category: "Fruits" },
-    { word: "Red", category: "Colors" },
-    { word: "Blue", category: "Colors" },
-    { word: "Green", category: "Colors" },
-    { word: "Yellow", category: "Colors" },
-    { word: "Piano", category: "Instruments" },
-    { word: "Violin", category: "Instruments" },
-    { word: "Drums", category: "Instruments" },
-    { word: "Flute", category: "Instruments" },
-    { word: "Cat", category: "Animals" },
-    { word: "Dog", category: "Animals" },
-    { word: "Elephant", category: "Animals" },
-    { word: "Tiger", category: "Animals" }
+    { word: "Gold", category: "Shades of yellow", position: [0, 0] },
+    { word: "Mango", category: "Shades of yellow", position: [1, 1] },
+    { word: "Citrine", category: "Shades of yellow", position: [1, 2] },
+    { word: "Saffron", category: "Shades of yellow", position: [3, 2] },
+    { word: "Python", category: "Programming languages", position: [1, 3] },
+    { word: "Ruby", category: "Programming languages", position: [0, 1] },
+    { word: "Rust", category: "Programming languages", position: [3, 3] },
+    { word: "Go", category: "Programming languages", position: [3, 1] },
+    { word: "Stop", category: "Types of watches", position: [3, 0] },
+    { word: "Smart", category: "Types of watches", position: [2, 2] },
+    { word: "Analog", category: "Types of watches", position: [2, 0] },
+    { word: "Dress", category: "Types of watches", position: [0, 3] },
+    { word: "Screen", category: "Words that start with Touch", position: [1, 0] },
+    { word: "Pad", category: "Words that start with Touch", position: [2, 1] },
+    { word: "Down", category: "Words that start with Touch", position: [2, 3] },
+    { word: "Back", category: "Words that start with Touch", position: [0, 2] }
   ];
   
-  // Shuffling the board and assigning colors, orange instead of yellow for visibility
-  const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
+
   const categoryColors = ["orange", "green", "blue", "purple"];
   
   export default function ConnectionsGame() {
-    const [shuffledWords, setShuffledWords] = useState([]);
     const [selected, setSelected] = useState([]);
     const [foundGroups, setFoundGroups] = useState([]);
     const [foundCategories, setFoundCategories] = useState([]);
-    const [attempts, setAttempts] = useState(4);
+    const [mistakes, setMistakes] = useState(0);
+    const maxMistakes = 4;
     const [categoryColorMap, setCategoryColorMap] = useState({});
   
     useEffect(() => {
-      setShuffledWords(shuffleArray([...words]));
       assignCategoryColors();
     }, []);
   
-    // Color assignments
     const assignCategoryColors = () => {
       const uniqueCategories = [...new Set(words.map((w) => w.category))];
       const colorMap = {};
@@ -49,7 +46,7 @@ const words = [
     };
   
     const handleSelect = (word) => {
-      if (foundGroups.includes(word) || attempts === 0) return;
+      if (foundGroups.includes(word) || mistakes >= maxMistakes) return;
       
       if (selected.includes(word)) {
         setSelected(selected.filter((w) => w !== word));
@@ -59,35 +56,36 @@ const words = [
     };
   
     const checkSelection = () => {
-      if (selected.length !== 4 || attempts === 0) return;
+      if (selected.length !== 4 || mistakes >= maxMistakes) return;
       
       const categorySet = new Set(selected.map((w) => w.category));
       if (categorySet.size === 1) {
         setFoundGroups([...foundGroups, ...selected]);
         setFoundCategories([...foundCategories, selected[0].category]);
+      } else {
+        setMistakes(mistakes + 1);
       }
       setSelected([]);
-      setAttempts(Math.max(0, attempts - 1));
     };
   
     return (
       <div className="game-container">
-        <h1>Legally Distinct Connections</h1>
-        <p>Attempts left: {attempts}</p>
+        <h1>Connections Game</h1>
+        <p>Mistakes: {mistakes} / {maxMistakes}</p>
         <div className="grid">
-          {shuffledWords.map((item) => (
+          {words.map((item) => (
             <button
               key={item.word}
               className={`word ${selected.includes(item) ? "selected" : ""} ${foundGroups.includes(item) ? "found" : ""}`}
-              style={{ backgroundColor: foundGroups.includes(item) ? categoryColorMap[item.category] : "" }}
+              style={{ gridRow: item.position[0] + 1, gridColumn: item.position[1] + 1, backgroundColor: foundGroups.includes(item) ? categoryColorMap[item.category] : "" }}
               onClick={() => handleSelect(item)}
-              disabled={foundGroups.includes(item) || attempts === 0}
+              disabled={foundGroups.includes(item) || mistakes >= maxMistakes}
             >
               {item.word}
             </button>
           ))}
         </div>
-        <button className="check-btn" onClick={checkSelection} disabled={selected.length !== 4 || attempts === 0}>Check</button>
+        <button className="check-btn" onClick={checkSelection} disabled={selected.length !== 4 || mistakes >= maxMistakes}>Check</button>
         {foundCategories.length > 0 && (
           <div className="categories-found">
             <h3>Categories Found:</h3>
@@ -100,7 +98,7 @@ const words = [
             </ul>
           </div>
         )}
-        {attempts === 0 && foundCategories.length < 4 && (
+        {mistakes >= maxMistakes && foundCategories.length < 4 && (
           <div className="game-over">
             <h2>Game Over!</h2>
             <h3>Correct Categories:</h3>
@@ -113,7 +111,8 @@ const words = [
             </ul>
           </div>
         )}
-        {foundGroups.length === words.length && <h2 className="win-message">You Win!</h2>}
+        {foundGroups.length === words.length && <h2 className="win-message">You Win! 🎉</h2>}
       </div>
     );
   }
+  
