@@ -1,6 +1,5 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-    "routes": [{"source": "/platformer(.*)", "destination": "/platformers/index.html"}]
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
   }
 
   
