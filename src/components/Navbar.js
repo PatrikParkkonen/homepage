@@ -56,11 +56,6 @@ function Navbar() {
                                             Connections
                                         </Link>
                                     </li>
-                                    <li>
-                                        <a href='/platformer' className='dropdown-link' onClick={closeDropdown}>
-                                            Platformer
-                                        </a>
-                                    </li>
                                 </ul>
                             )}
                         </li>
