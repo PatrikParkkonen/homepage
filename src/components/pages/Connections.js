@@ -9,7 +9,7 @@ function Connections () {
         <>
 
          <ConnectionsSection />
-         <Footer />
+
 
         </>
     );

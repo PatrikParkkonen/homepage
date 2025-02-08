@@ -16,10 +16,24 @@
     margin-top: -100px;
 }
 
+.resume-container > h2 {
+    margin-top: 8px;
+    color: black;
+    align-items: center;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 25px;
+    margin: 40px;
+    padding: 1%;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .resume-container > p {
     margin-top: 8px;
-    color: #fff;
+    color: black;
     align-items: center;
+    background-color: egba(255,255,255,0.5);
+    border-radius: 25px;
     margin: 4px;
     font-size: 32px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

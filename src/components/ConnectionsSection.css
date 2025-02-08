@@ -6,6 +6,8 @@ body {
   }
   
   .game-container {
+    transform: scale(1.25);
+    transform-origin: top center;
     max-width: 400px;
     margin: auto;
     background: white;

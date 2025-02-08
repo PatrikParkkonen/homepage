@@ -16,6 +16,18 @@
     margin-top: -25px;
 }
 
+.games-container > h2 {
+    margin-top: 8px;
+    color: black;
+    align-items: center;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 25px;
+    margin: 40px;
+    padding: 1%;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .games-container > p {
     margin-top: 8px;
     color: #fff;
