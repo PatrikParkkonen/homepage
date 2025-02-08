@@ -31,6 +31,7 @@ const words = [
     const [mistakes, setMistakes] = useState(0);
     const maxMistakes = 4;
     const [categoryColorMap, setCategoryColorMap] = useState({});
+    const [almostCorrect, setAlmostCorrect] = useState(false);
   
     useEffect(() => {
       assignCategoryColors();
@@ -62,16 +63,28 @@ const words = [
       if (categorySet.size === 1) {
         setFoundGroups([...foundGroups, ...selected]);
         setFoundCategories([...foundCategories, selected[0].category]);
+        setAlmostCorrect(false);
       } else {
-        setMistakes(mistakes + 1);
+        const categoryCounts = {};
+        selected.forEach((w) => {
+          categoryCounts[w.category] = (categoryCounts[w.category] || 0) + 1;
+        });
+        
+        if (Object.values(categoryCounts).includes(3)) {
+          setAlmostCorrect(true);
+        } else {
+          setAlmostCorrect(false);
+          setMistakes(mistakes + 1);
+        }
       }
       setSelected([]);
     };
   
     return (
       <div className="game-container">
-        <h1>Connections Game</h1>
+        <h1>Legally Distinct Connections</h1>
         <p>Mistakes: {mistakes} / {maxMistakes}</p>
+        {almostCorrect && <p className="hint">You were one word away!</p>}
         <div className="grid">
           {words.map((item) => (
             <button
