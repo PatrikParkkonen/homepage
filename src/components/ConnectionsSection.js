@@ -29,6 +29,7 @@ const words = [
     const [foundGroups, setFoundGroups] = useState([]);
     const [foundCategories, setFoundCategories] = useState([]);
     const [mistakes, setMistakes] = useState(0);
+    const [shake, setShake] = useState(false);
     const maxMistakes = 4;
     const [categoryColorMap, setCategoryColorMap] = useState({});
     const [almostCorrect, setAlmostCorrect] = useState(false);
@@ -46,16 +47,6 @@ const words = [
       setCategoryColorMap(colorMap);
     };
   
-    const handleSelect = (word) => {
-      if (foundGroups.includes(word) || mistakes >= maxMistakes) return;
-      
-      if (selected.includes(word)) {
-        setSelected(selected.filter((w) => w !== word));
-      } else if (selected.length < 4) {
-        setSelected([...selected, word]);
-      }
-    };
-  
     const checkSelection = () => {
       if (selected.length !== 4 || mistakes >= maxMistakes) return;
       
@@ -64,7 +55,14 @@ const words = [
         setFoundGroups([...foundGroups, ...selected]);
         setFoundCategories([...foundCategories, selected[0].category]);
         setAlmostCorrect(false);
+        setSelected([]);
       } else {
+        const newShakeState = {};
+        selected.forEach((word) => {
+          newShakeState[word.word] = true;
+        });
+        setShake(newShakeState);
+        setTimeout(() => setShake({}), 500);
         const categoryCounts = {};
         selected.forEach((w) => {
           categoryCounts[w.category] = (categoryCounts[w.category] || 0) + 1;
@@ -72,26 +70,26 @@ const words = [
         
         if (Object.values(categoryCounts).includes(3)) {
           setAlmostCorrect(true);
+          setMistakes(mistakes + 1);
         } else {
           setAlmostCorrect(false);
           setMistakes(mistakes + 1);
         }
       }
-      setSelected([]);
     };
   
     return (
       <div className="game-container">
         <h1>Legally Distinct Connections</h1>
         <p>Mistakes: {mistakes} / {maxMistakes}</p>
-        {almostCorrect && <p className="hint">You were one word away!</p>}
-        <div className="grid">
+        {almostCorrect && <p className="hint">You're one word away!</p>}
+        <div className={`grid ${shake ? "shake" : ""}`}>
           {words.map((item) => (
             <button
               key={item.word}
-              className={`word ${selected.includes(item) ? "selected" : ""} ${foundGroups.includes(item) ? "found" : ""}`}
-              style={{ gridRow: item.position[0] + 1, gridColumn: item.position[1] + 1, backgroundColor: foundGroups.includes(item) ? categoryColorMap[item.category] : "" }}
-              onClick={() => handleSelect(item)}
+              className={`word ${selected.includes(item) ? "selected" : ""} ${foundGroups.includes(item) || mistakes >= maxMistakes ? "found" : ""} ${shake[item.word] ? "shake" : ""}`}
+              style={{ gridRow: item.position[0] + 1, gridColumn: item.position[1] + 1, backgroundColor: foundGroups.includes(item) || mistakes >= maxMistakes ? categoryColorMap[item.category] : "" }}
+              onClick={() => setSelected(selected.includes(item) ? selected.filter((w) => w !== item) : [...selected, item])}
               disabled={foundGroups.includes(item) || mistakes >= maxMistakes}
             >
               {item.word}
@@ -100,32 +98,31 @@ const words = [
         </div>
         <button className="check-btn" onClick={checkSelection} disabled={selected.length !== 4 || mistakes >= maxMistakes}>Check</button>
         {foundCategories.length > 0 && (
-          <div className="categories-found">
-            <h3>Categories Found:</h3>
-            <ul>
-              {foundCategories.map((category, index) => (
-                <li key={index} style={{ color: categoryColorMap[category] }}>
-                  {category}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {mistakes >= maxMistakes && foundCategories.length < 4 && (
-          <div className="game-over">
-            <h2>Game Over!</h2>
-            <h3>Correct Categories:</h3>
-            <ul>
-              {[...new Set(words.map(w => w.category))].map((category, index) => (
-                <li key={index} style={{ color: categoryColorMap[category] }}>
-                  {category}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {foundGroups.length === words.length && <h2 className="win-message">You Win! 🎉</h2>}
-      </div>
-    );
-  }
-  
+        <div className="categories-found">
+          <h3>Categories Found:</h3>
+          <ul>
+            {foundCategories.map((category, index) => (
+              <li key={index} style={{ color: categoryColorMap[category] }}>
+                {category}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {mistakes >= maxMistakes && foundCategories.length < 4 && (
+        <div className="game-over">
+          <h2>Game Over!</h2>
+          <h3>Correct Categories:</h3>
+          <ul>
+            {[...new Set(words.map(w => w.category))].map((category, index) => (
+              <li key={index} style={{ color: categoryColorMap[category] }}>
+                {category}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {foundGroups.length === words.length && <h2 className="win-message">You Win!</h2>}
+    </div>
+  );
+}

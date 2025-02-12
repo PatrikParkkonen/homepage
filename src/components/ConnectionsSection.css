@@ -49,6 +49,17 @@ body {
   .selected {
     background-color: #808080;
   }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+  }
+  
+  .word.shake {
+    animation: shake 0.3s ease-in-out;
+  }
   
   .found {
     background-color: #4caf50;
