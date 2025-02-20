@@ -56,6 +56,11 @@ function Navbar() {
                                             Connections
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link to='/sudoku' className='dropdown-link' onClick={closeDropdown}>
+                                            Sudoku
+                                        </Link>
+                                    </li>
                                 </ul>
                             )}
                         </li>

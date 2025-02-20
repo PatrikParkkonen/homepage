@@ -10,6 +10,8 @@ function GamesSection() {
 
             <h2><a href='/connections'>Legally Distinct Connections (beta)</a></h2>
 
+            <h2><a href='/sudoku'>Simple Sudoku (beta)</a></h2>
+
 
                 
             </div>

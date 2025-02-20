@@ -1,0 +1,163 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+  }
+  
+  .game-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 456px; /* Match board width */
+  }
+
+  .board-container {
+    position: relative;
+    transition: filter 0.3s ease;
+  }
+  
+  .board-container.paused {
+    filter: blur(3px);
+    pointer-events: none;
+  }
+  
+  .board {
+    border: 3px solid #2c3e50;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    width: 456px;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .cell.fixed {
+    background-color: #f8f9fa;
+    color: #3498db;
+    cursor: default;
+  }
+  
+  .cell.editable {
+    color: #2c3e50;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  
+  .cell.editable:focus {
+    background-color: #e8f4f8;
+    outline: none;
+  }
+  
+  .cell.highlighted {
+    background-color: #b3e5fc !important;
+  }
+  
+  /* 3x3 grid borders */
+  .row:nth-child(3n) {
+    border-bottom: 2px solid #2c3e50;
+  }
+  
+  .cell:nth-child(3n) {
+    border-right: 2px solid #2c3e50;
+  }
+  
+  /* Remove right border for last cell in row */
+  .cell:nth-child(9n) {
+    border-right: none;
+  }
+  
+  /* Remove bottom border for last row */
+  .row:last-child {
+    border-bottom: none !important;
+  }
+  
+  .new-game-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+  
+  .new-game-btn:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  .timer {
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 700;
+  }
+
+  .cell.incorrect {
+    background-color: #ffebee !important;
+    color: #c62828 !important;
+  }
+  
+  .game-over {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .pause-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .pause-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    background: #f1c40f;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+  
+  .pause-btn:hover {
+    background: #f39c12;
+    transform: scale(1.05);
+  }
